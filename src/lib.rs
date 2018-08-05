@@ -1,6 +1,7 @@
 #[cfg(test)]
 mod tests {
     // use std::collections::BTreeMap;
+    use std::collections::BinaryHeap;
     use std::collections::HashMap;
     use std::collections::LinkedList;
 
@@ -48,6 +49,19 @@ mod tests {
         assert_eq!(li.pop_back(), Some(1));
         assert_eq!(li.pop_back(), None);
         assert!(li.is_empty());
+    }
+
+    #[test]
+    fn binaryheap() {
+        let mut bh: BinaryHeap<i64> = BinaryHeap::new();
+        bh.push(3);
+        bh.push(5);
+        bh.push(2);
+        bh.push(4);
+        bh.push(1);
+        assert_eq!(bh.peek(), Some(&5));
+        assert_eq!(bh.pop(), Some(5));
+        assert_eq!(bh.pop(), Some(4));
     }
 
     #[test]
