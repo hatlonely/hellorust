@@ -28,6 +28,40 @@ mod tests {
     }
 
     #[test]
+    fn string() {
+        {
+            let a = "hello";
+            let b = "world";
+            let c = [a, b].join(" ");
+            let d = format!("{} {}", a, b);
+            assert_eq!(c, "hello world");
+            assert_eq!(d, "hello world");
+        }
+        {
+            let mut a = "hello".to_owned();
+            a.push_str(" world");
+            assert_eq!(a, "hello world");
+            a += " world";
+            assert_eq!(a, "hello world world");
+        }
+        {
+            let mut a = "hello".to_owned();
+            let b = " world".to_owned();
+            a.push_str(&b);
+            assert_eq!(a, "hello world");
+            a += &b;
+            assert_eq!(a, "hello world world");
+            let c = a + &b;
+            assert_eq!(c, "hello world world world");
+        }
+        {
+            let a = "hello world".to_owned();
+            let v: Vec<&str> = a.split(" ").collect();
+            assert_eq!(v, vec!["hello", "world"]);
+        }
+    }
+
+    #[test]
     fn vector() {
         let mut vi: Vec<i64> = vec![0, 1, 2, 3, 4, 5];
         for i in 6..=9 {
