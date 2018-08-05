@@ -4,6 +4,7 @@ mod tests {
     use std::collections::BinaryHeap;
     use std::collections::HashMap;
     use std::collections::LinkedList;
+    use std::process::Command;
     use std::thread;
 
     #[test]
@@ -144,5 +145,14 @@ mod tests {
         });
         let res = t1.join();
         println!("res: {:?}", res);
+    }
+
+    #[test]
+    fn process() {
+        let output = Command::new("echo")
+            .arg("hello world")
+            .output()
+            .expect("Failed to execute command");
+        assert_eq!(b"hello world\n", output.stdout.as_slice());
     }
 }
