@@ -59,6 +59,17 @@ mod tests {
             let v: Vec<&str> = a.split(" ").collect();
             assert_eq!(v, vec!["hello", "world"]);
         }
+        {
+            let s = "123";
+            assert_eq!(s.parse::<i64>().unwrap(), 123);
+        }
+        {
+            let s = "123".to_owned();
+            assert_eq!(s.parse::<i64>().unwrap(), 123);
+        }
+        {
+            assert_eq!(123.to_string(), "123");
+        }
     }
 
     #[test]
