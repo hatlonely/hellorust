@@ -4,6 +4,7 @@ mod tests {
     use std::collections::BinaryHeap;
     use std::collections::HashMap;
     use std::collections::LinkedList;
+    use std::thread;
 
     #[test]
     fn format() {
@@ -132,5 +133,16 @@ mod tests {
         for k in hm.keys() {
             println!("{} => {}", k, hm[k]);
         }
+    }
+
+    #[test]
+    fn thread() {
+        let t1 = thread::spawn(move || {
+            for i in 0..9 {
+                println!("{}", i);
+            }
+        });
+        let res = t1.join();
+        println!("res: {:?}", res);
     }
 }
