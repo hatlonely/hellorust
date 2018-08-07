@@ -6,6 +6,7 @@ mod tests {
     use std::collections::LinkedList;
     use std::process::Command;
     use std::thread;
+    use std::time::{Duration, Instant};
 
     #[test]
     fn format() {
@@ -154,5 +155,13 @@ mod tests {
             .output()
             .expect("Failed to execute command");
         assert_eq!(b"hello world\n", output.stdout.as_slice());
+    }
+
+    #[test]
+    fn time() {
+        let t1 = Instant::now();
+        println!("t1 elapsed: {:?}", t1.elapsed());
+        let t2 = t1 - Duration::from_secs(3600);
+        println!("t1 elapsed: {:?}", t2.elapsed());
     }
 }
